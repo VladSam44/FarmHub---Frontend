@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -49,6 +48,6 @@ addDrawing(data: any): Observable<any> {
 }
 
   deleteDrawing(drawingId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${drawingId}`,);
+    return this.http.delete<any>(`${this.apiUrl}${drawingId}`,);
   }
 }

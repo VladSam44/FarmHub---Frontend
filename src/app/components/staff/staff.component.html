@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Staff Management</h1>
+  
+    <form [formGroup]="angajatForm" (ngSubmit)="selectedAngajat ? updateAngajat() : addAngajat()">
+      
+      <div>
+        <label for="nume">Nume</label>
+        <input id="nume" formControlName="nume">
+      </div>
+      <div>
+        <label for="pozitie">Pozitie</label>
+        <input id="pozitie" formControlName="pozitie">
+      </div>
+      <div>
+        <label for="salariu">Salariu</label>
+        <input id="salariu" formControlName="salariu">
+      </div>
+      <div>
+        <label for="hiredate">Hire Date</label>
+        <input id="hiredate" formControlName="hiredate" bsDatepicker [bsConfig]="bsConfig">
+      </div>
+      <div>
+        <label for="expirareContract">Expirare Contract</label>
+        <input id="expirareContract" formControlName="expirareContract" bsDatepicker [bsConfig]="bsConfig">
+      </div>
+  
+      <button type="submit">{{ selectedAngajat ? 'Update' : 'Add' }} Angajat</button>
+    </form>
+  
+    <ul>
+      <li *ngFor="let angajat of angajati">
+        {{ angajat.nume }} - {{ angajat.pozitie }}
+        <button (click)="editAngajat(angajat)">Edit</button>
+        <button (click)="deleteAngajat(angajat.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  

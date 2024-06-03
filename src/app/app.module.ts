@@ -14,21 +14,18 @@ import { ResetComponent } from './components/reset/reset.component';
 import { ResurseComponent } from './components/resurse/resurse.component';
 import { MeteoComponent } from './components/meteo/meteo.component';
 import { UtilajeComponent } from './components/utilaje/utilaje.component';
-import { AngajatiComponent } from './components/angajati/angajati.component';
 import { FinanciarComponent } from './components/financiar/financiar.component';
-import { EditAngajatiComponent } from './components/edit-angajati/edit-angajati.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ExperimenteComponent } from './components/experimente/experimente.component';
-import { MapsComponent } from './components/maps/maps.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HartaComponent } from './components/harta/harta.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
-
-
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+import { StaffComponent } from './components/staff/staff.component';
 
 @NgModule({
   declarations: [
@@ -40,14 +37,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ResurseComponent,
     MeteoComponent,
     UtilajeComponent,
-    AngajatiComponent,
     FinanciarComponent,
-    EditAngajatiComponent,
     NavbarComponent,
     ChatBotComponent,
     WelcomeComponent,
     ExperimenteComponent,
     HartaComponent,
+    StaffComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,14 +53,16 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     NgToastModule,
     FormsModule,
     GoogleMapsModule,
-    MapsComponent,
-    BsDatepickerModule
+    BsDatepickerModule,
+    MatFormFieldModule,
+    MatDialogModule,
+
   ],
   providers: [ {
     provide:HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi:true
-}],
+}, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

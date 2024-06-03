@@ -1,7 +1,0 @@
-<p>maps works!</p>
-
-<google-map [options]="options" (mapClick)="handleMapClick($event)">
-    <map-polyline *ngIf="drawingEnabled" [path]="polylinePath"></map-polyline>
-  </google-map>
-<button (click)="toggleDrawingMode()">Activare/Dezactivare Desenare</button>
-<button (click)="clearDrawing()">Ștergere Desen</button>
