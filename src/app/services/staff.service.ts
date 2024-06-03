@@ -19,7 +19,7 @@ export class StaffService {
   }
   
   addAngajat(data: any): Observable<any>{
-    console.log(`mesaj data:`);
+    console.log(`mesaj adaugare log:`);
     return this.http.post<any>(`${this.apiUrl}create`,{
       angajat: data.angajat,
       nume: data.nume,

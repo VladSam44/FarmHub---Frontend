@@ -14,6 +14,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ExperimenteComponent } from './components/experimente/experimente.component';
 import { HartaComponent } from './components/harta/harta.component';
 import { StaffComponent } from './components/staff/staff.component';
+import { EchipamentComponent } from './components/echipament/echipament.component';
 
 
 
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: 'experimente', component:ExperimenteComponent},
   {path: 'harta', component:HartaComponent,canActivate:[AuthGuard]},
   {path: 'staff', component:StaffComponent,canActivate:[AuthGuard]},
-
+  {path: 'echipament', component:EchipamentComponent,canActivate:[AuthGuard]},
 
 ];
 

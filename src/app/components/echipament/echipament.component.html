@@ -1,0 +1,165 @@
+<p>echipament works!</p>
+<div class="container">
+    <h1>Echipament Management</h1>
+  
+    <div>
+      <h2>Utilaje</h2>
+      <form [formGroup]="utilajForm" (ngSubmit)="selectedUtilaj ? updateUtilaj() : addUtilaj()">
+        <!-- Form fields for Utilaje -->
+        <div>
+          <label for="categorie">Categorie</label>
+          <input id="categorie" formControlName="categorie">
+        </div>
+        <div>
+          <label for="brand">Brand</label>
+          <input id="brand" formControlName="brand">
+        </div>
+        <div>
+          <label for="model">Model</label>
+          <input id="model" formControlName="model">
+        </div>
+        <div>
+          <label for="putereNecesara">Putere Necesara</label>
+          <input id="putereNecesara" formControlName="putereNecesara">
+        </div>
+        <div>
+          <label for="greutate">Greutate</label>
+          <input id="greutate" formControlName="greutate">
+        </div>
+        <div>
+          <label for="anFabricatie">An Fabricatie</label>
+          <input id="anFabricatie" formControlName="anFabricatie">
+        </div>
+        <div>
+          <label for="oreFunctionare">Ore Functionare</label>
+          <input id="oreFunctionare" formControlName="oreFunctionare">
+        </div>
+        <div>
+          <label for="dataAchizitie">Data Achizitie</label>
+          <input id="dataAchizitie" formControlName="dataAchizitie" bsDatepicker [bsConfig]="bsConfig">
+        </div>
+        <div>
+          <label for="pretAchizitie">Pret Achizitie</label>
+          <input id="pretAchizitie" formControlName="pretAchizitie">
+        </div>
+        <div>
+          <label for="ultimaMentenanta">Ultima Mentenanta</label>
+          <input id="ultimaMentenanta" formControlName="ultimaMentenanta" bsDatepicker [bsConfig]="bsConfig">
+        </div>
+        <button type="submit">{{ selectedUtilaj ? 'Update' : 'Add' }} Utilaj</button>
+      </form>
+  
+      <ul>
+        <li *ngFor="let utilaj of utilaje">
+          {{ utilaj.brand }} - {{ utilaj.model }}
+          <button (click)="editUtilaj(utilaj)">Edit</button>
+          <button (click)="deleteUtilaj(utilaj.id)">Delete</button>
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <h2>Vehicule</h2>
+      <form [formGroup]="vehiculForm" (ngSubmit)="selectedVehicul ? updateVehicul() : addVehicul()">
+        <!-- Form fields for Vehicule -->
+        <div>
+          <label for="categorieVehicul">Categorie</label>
+          <input id="categorieVehicul" formControlName="categorie">
+        </div>
+        <div>
+          <label for="brandVehicul">Brand</label>
+          <input id="brandVehicul" formControlName="brand">
+        </div>
+        <div>
+          <label for="modelVehicul">Model</label>
+          <input id="modelVehicul" formControlName="model">
+        </div>
+        <div>
+          <label for="putere">Putere</label>
+          <input id="putere" formControlName="putere">
+        </div>
+        <div>
+          <label for="greutateVehicul">Greutate</label>
+          <input id="greutateVehicul" formControlName="greutate">
+        </div>
+        <div>
+          <label for="anFabricatieVehicul">An Fabricatie</label>
+          <input id="anFabricatieVehicul" formControlName="anFabricatie">
+        </div>
+        <div>
+          <label for="oreFunctionareVehicul">Ore Functionare</label>
+          <input id="oreFunctionareVehicul" formControlName="oreFunctionare">
+        </div>
+        <div>
+          <label for="dataAchizitieVehicul">Data Achizitie</label>
+          <input id="dataAchizitieVehicul" formControlName="dataAchizitie" bsDatepicker [bsConfig]="bsConfig">
+        </div>
+        <div>
+          <label for="pretAchizitieVehicul">Pret Achizitie</label>
+          <input id="pretAchizitieVehicul" formControlName="pretAchizitie">
+        </div>
+        <div>
+          <label for="ultimaMentenantaVehicul">Ultima Mentenanta</label>
+          <input id="ultimaMentenantaVehicul" formControlName="ultimaMentenanta" bsDatepicker [bsConfig]="bsConfig">
+        </div>
+        <button type="submit">{{ selectedVehicul ? 'Update' : 'Add' }} Vehicul</button>
+      </form>
+  
+      <ul>
+        <li *ngFor="let vehicul of vehicule">
+          {{ vehicul.brand }} - {{ vehicul.model }}
+          <button (click)="editVehicul(vehicul)">Edit</button>
+          <button (click)="deleteVehicul(vehicul.id)">Delete</button>
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <h2>Transport</h2>
+      <form [formGroup]="transportForm" (ngSubmit)="selectedTransport ? updateTransport() : addTransport()">
+        <!-- Form fields for Transport -->
+        <div>
+          <label for="categorieTransport">Categorie</label>
+          <input id="categorieTransport" formControlName="categorie">
+        </div>
+        <div>
+          <label for="brandTransport">Brand</label>
+          <input id="brandTransport" formControlName="brand">
+        </div>
+        <div>
+          <label for="capacitateTransport">Capacitate</label>
+          <input id="capacitateTransport" formControlName="capacitate">
+        </div>
+        <div>
+          <label for="anFabricatieTransport">An Fabricatie</label>
+          <input id="anFabricatieTransport" formControlName="anFabricatie">
+        </div>
+        <div>
+          <label for="tipAtasamentTransport">Tip Atasament</label>
+          <input id="tipAtasamentTransport" formControlName="tipAtasament">
+        </div>
+        <div>
+          <label for="dataAchizitieTransport">Data Achizitie</label>
+          <input id="dataAchizitieTransport" formControlName="dataAchizitie" bsDatepicker [bsConfig]="bsConfig">
+        </div>
+        <div>
+          <label for="pretAchizitieTransport">Pret Achizitie</label>
+          <input id="pretAchizitieTransport" formControlName="pretAchizitie">
+        </div>
+        <div>
+          <label for="ultimaMentenantaTransport">Ultima Mentenanta</label>
+          <input id="ultimaMentenantaTransport" formControlName="ultimaMentenanta" bsDatepicker [bsConfig]="bsConfig">
+        </div>
+        <button type="submit">{{ selectedTransport ? 'Update' : 'Add' }} Transport</button>
+      </form>
+  
+      <ul>
+        <li *ngFor="let transport of transport">
+          {{ transport.brand }} - {{ transport.capacitate }}
+          <button (click)="editTransport(transport)">Edit</button>
+          <button (click)="deleteTransport(transport.id)">Delete</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

@@ -26,6 +26,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { StaffComponent } from './components/staff/staff.component';
+import { EchipamentComponent } from './components/echipament/echipament.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { StaffComponent } from './components/staff/staff.component';
     ExperimenteComponent,
     HartaComponent,
     StaffComponent,
+    EchipamentComponent,
   ],
   imports: [
     BrowserModule,
