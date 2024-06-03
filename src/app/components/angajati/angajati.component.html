@@ -1,0 +1,59 @@
+<!--<button (click)="initNewEmp()">Create New Emp</button>
+
+<table>
+    <thead>
+        <th>Nume</th>
+        <th>Prenume</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+        <td>
+            {{employee.lastName}}
+        </td>
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.position}}</td>
+        <td>{{ employee.hireDate | date:'yyyy-MM-dd' }}</td>
+        <td><button (click)="editEmp(employee)">Edit</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<app-edit-angajati
+  [employee]="employeeToEdit"
+  (employeesUpdated)="updateEmpList($event)"
+></app-edit-angajati>  -->
+<!-- app-angajati.component.html -->
+
+<!-- app-angajati.component.html -->
+
+<button class="create-btn" (click)="initNewEmp()">Create New Employee</button>
+
+<table class="employee-table">
+    <thead>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>Positie</th>
+        <th>Salariu</th>
+        <th>Data Angajarii</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.salariu}}</td>
+            <td>{{ employee.hireDate | date:'yyyy-MM-dd' }}</td>
+            <td>
+                <button class="edit-btn" (click)="editEmp(employee)">Edit</button>
+               
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-edit-angajati
+  [employee]="employeeToEdit"
+  (employeesUpdated)="updateEmpList($event)"
+></app-edit-angajati>
+

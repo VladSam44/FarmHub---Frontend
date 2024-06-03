@@ -1,0 +1,133 @@
+.fr {
+    display: block;
+    float: right;
+}
+.outer{
+    height: 100vh;
+    background: linear-gradient(to top, #d4ffc9 50%, #6ef675 90%) no-repeat;
+
+}
+.panel-heading{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#forget {
+    min-width: 100px;
+    margin-left: auto;
+    text-decoration: none;
+    cursor: pointer;
+    color: #50e224;
+} 
+
+a:hover{
+    text-decoration: none;
+}
+
+.form-inline label{
+    padding-left: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.btn{
+    margin-top: 20px;
+    border-radius: auto;
+}
+
+.panel{
+    min-height: 380px;
+    box-shadow: 20px 20px 80px rgb(218, 218, 218);
+    border-radius: 12px;
+    margin-top: 100px;
+}
+
+.input-field {
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    color: #50e224;
+}
+
+.input-field.error {
+    border: 1px solid red;
+    color: red;
+}
+
+input[type='text'],
+input[type='password']{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+.fa-eye-slash.btn{
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+}
+
+img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+}
+
+.bordert{
+    border-top: 1px solid #aaa;
+    position: relative;
+}
+
+.bordert::after{
+    content: "sau conectati-va";
+    position: absolute;
+    top: -13px;
+    left: 33%;
+    background-color: #fff;
+    padding: 0 8px;
+}
+
+#logareBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #fff; /* Fundal alb */
+    color: #28a745; /* Text verde */
+    border: 1px solid #28a745; /* Contur verde */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#logareBtn:hover {
+    background-color: #28a745; /* Fundal verde la hover */
+    color: #fff; /* Text alb la hover */
+}
+#inregistrareBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #fff; 
+    color: #28a745; 
+    border: 1px solid #28a745; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#inregistrareBtn:hover {
+    background-color: #28a745; 
+    color: #fff; 
+}
+

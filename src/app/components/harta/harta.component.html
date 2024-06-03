@@ -1,0 +1,66 @@
+
+<div id="map"></div>
+<div class="calculation-box">
+    <p>Click the map to draw a polygon.</p>
+    <div id="calculated-area"></div>
+</div>
+<button (click)="showAddForm = true" *ngIf="!showAddForm">Adaugă teren nou</button>
+<div *ngIf="showAddForm">
+<form (ngSubmit)="saveDrawing()" #drawingForm="ngForm">
+  
+  <label for="stareTeren">Stare teren:</label>
+    <input type="text" id="stareTeren" name="stareTeren" [(ngModel)]="formData.stareTeren" required>
+  
+    <label for="tipCultura">Tip cultură:</label>
+    <input type="text" id="tipCultura" name="tipCultura" [(ngModel)]="formData.tipCultura" required>
+  
+    <label for="ultimaCultura">Ultima cultură:</label>
+    <input type="text" id="ultimaCultura" name="ultimaCultura" [(ngModel)]="formData.ultimaCultura" required>
+  
+    <label for="proprietarArenda">Proprietar cultură:</label>
+    <input type="text" id="proprietarArenda" name="proprietarArenda" [(ngModel)]="formData.proprietarArenda" required>
+  
+  
+    <label for="dateAcquired">Data cultură:</label>
+    <input type="text" id="dateAcquired" name="dateAcquired" [(ngModel)]="formData.dateAcquired" bsDatepicker required>
+      
+    <button type="submit" [disabled]="!drawingForm.valid">Salvează desen și date</button>
+  </form>
+</div>
+  <button (click)="onShowDrawingsButtonClick()">Load My Drawings</button>
+  <div *ngIf="drawings.length > 0">
+    <h2>My Drawings</h2>
+    <ul>
+      <li *ngFor="let drawing of drawings" (click)="selectDrawing(drawing)">
+        <p><strong>ID teren:</strong> {{ drawing.id }}</p>
+        
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="selectedDrawing">
+    <p><strong>Stare teren:</strong> {{ selectedDrawing.stareTeren }}</p>
+    <p><strong>Tip cultură:</strong> {{ selectedDrawing.tipCultura }}</p>
+    <p><strong>Area:</strong> {{ selectedDrawing.area }} HA</p>
+    <p><strong>Ultima cultură:</strong> {{ selectedDrawing.ultimaCultura }}</p>
+    <p><strong>Arenda cultură:</strong> {{ selectedDrawing.proprietarArenda }}</p>
+    <p><strong>Data cultură:</strong> {{ selectedDrawing.dateAcquired }}</p>
+    
+    <button (click)="editDrawing(selectedDrawing)">Edit</button>
+    <button (click)="deleteDrawing(selectedDrawing.id)">Delete</button>
+</div>
+    
+<div *ngIf="showEditModal">
+  <h2>Edit Drawing</h2>
+  <form (ngSubmit)="updateDrawing()" #editForm="ngForm">
+     <label for="stareTeren">Stare teren:</label>
+     <input type="text" id="stareTeren" name="stareTeren" [(ngModel)]="formData.stareTeren" required>
+   
+     <label for="tipCultura">Tip cultură:</label>
+     <input type="text" id="tipCultura" name="tipCultura" [(ngModel)]="formData.tipCultura" required>
+   
+     <label for="ultimaCultura">Ultima cultură:</label>
+     <input type="text" id="ultimaCultura" name="ultimaCultura" [(ngModel)]="formData.ultimaCultura" required>
+   
+     <button type="submit" [disabled]="!editForm.valid">Update Drawing</button>
+  </form>
+ </div>

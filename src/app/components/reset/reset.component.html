@@ -1,0 +1,35 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 mx-auto">
+                <div class="panel border bg-white text-center">
+                    <div class="panel-heading">
+                        <h3 class="pt-2 font-weight-bold">Actualizare parolă</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="resetPasswordForm">
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="resetPasswordForm.controls['password'].dirty && resetPasswordForm.hasError('required','password')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password"  type="password"placeholder="Parolă nouă">
+                                    
+                                </div>
+                            </div>
+                            <small *ngIf="resetPasswordForm.controls['password'].dirty && resetPasswordForm.hasError('required','password')" class="text-danger">*Introduceți parola</small>
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="resetPasswordForm.controls['confirmPassword'].dirty && resetPasswordForm.hasError('required','confirmPassword')" >
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="confirmPassword" type="password" placeholder="Reintroduceți parolă">
+                                    
+                                </div>
+                            </div>
+                            <small *ngIf="resetPasswordForm.controls['confirmPassword'].dirty && resetPasswordForm.hasError('required','confirmPassword')" class="text-danger">*Confirmați parola!</small>
+                            <small *ngIf="resetPasswordForm.hasError('confirmPasswordValidator','confirmPassword')" class="text-danger">*Parolele nu se potrivesc</small>
+                            <button (click)="reset()"  type="submit" class="btn btn-success btn-block mt-4 w-100" >Modificare</button>
+                           
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+
+.map {
+    width: 70%; 
+    height: 400px; 
+   }
+
+   .custom-zoom .ol-zoom-in,
+   .custom-zoom .ol-zoom-out {
+     background-color: #fff; 
+     border: 1px solid #ccc; 
+     border-radius: 5px; 
+     color: #333; 
+     cursor: pointer; 
+   }

@@ -1,0 +1,54 @@
+<!--<div *ngIf="employee">
+    <h2>{{ employee.lastName }}</h2>
+    <div>
+        Nume:
+        <input [(ngModel)]="employee.lastName" placeholder="Nume"/>
+    </div>
+    <div>
+        Prenume:
+        <input [(ngModel)]="employee.firstName" placeholder="Nume"/>
+    </div>
+    <div>
+        Positie:
+        <input [(ngModel)]="employee.position" placeholder="Nume"/>
+    </div>
+    <div>Data angajarii:
+        <input type="date" [(ngModel)]="employee.hireDate" name="hireDate" required>
+    </div>
+    <button (click)="updateEmp(employee)" *ngIf="employee.id">Save</button>
+  <button (click)="deleteEmp(employee)" *ngIf="employee.id">Delete</button>
+  <button (click)="createEmp(employee)" *ngIf="!employee.id">Create</button>
+  
+</div> -->
+
+
+<div *ngIf="employee" class="employee-form">
+    
+    <h2>{{ employee.lastName }}</h2>
+    <div class="form-group">
+        <label for="lastName">Nume:</label>
+        <input id="lastName" [(ngModel)]="employee.lastName" placeholder="Nume"/>
+    </div>
+    <div class="form-group">
+        <label for="firstName">Prenume:</label>
+        <input id="firstName" [(ngModel)]="employee.firstName" placeholder="Prenume"/>
+    </div>
+    <div class="form-group">
+        <label for="position">Positie:</label>
+        <input id="position" [(ngModel)]="employee.position" placeholder="Positie"/>
+    </div>
+    <div class="form-group">
+        <label for="salary">Salariu:</label>
+        <input id="salary"[(ngModel)]="employee.salariu" placeholder="Salariu">
+    </div>
+    <div class="form-group">
+        <label for="hireDate">Data angajarii:</label>
+        <input type="date" id="hireDate" [(ngModel)]="employee.hireDate" name="hireDate" required>
+    </div>
+    <button class="btn-save" (click)="updateEmp(employee)" *ngIf="employee.id">Save</button>
+    <button class="btn-delete" (click)="deleteEmp(employee)" *ngIf="employee.id">Delete</button>
+    <button class="btn-create" (click)="createEmp(employee)" *ngIf="!employee.id">Create</button>
+</div>
+
+
+
