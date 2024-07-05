@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EchipamentService } from '../../services/echipament.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-echipament',
@@ -13,15 +13,36 @@ export class EchipamentComponent implements OnInit {
   utilaje: any[] = [];
   vehicule: any[] = [];
   transport: any[] = [];
+  
   utilajForm: FormGroup;
   vehiculForm: FormGroup;
   transportForm: FormGroup;
+
   selectedUtilaj: any = null;
   selectedVehicul: any = null;
   selectedTransport: any = null;
+
+  isCollapsed: boolean = true;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private echipamentService: EchipamentService, private fb: FormBuilder) {
+  listaUtilaje: boolean = true;
+  listaVehicule: boolean = false;
+  listaTransporturi: boolean = false;
+
+  addUtilajModal: boolean = false;
+  editUtilajModal: boolean = false;
+  utilajToDelete: number | null = null;
+  addVehiculModal: boolean = false;
+  editVehiculModal: boolean = false;
+  editTransportModal: boolean = false;
+  addTransportModal: boolean = false;
+
+  showUtilajeCount = false;
+  showVehiculeCount = false; 
+  showTransporturiCount = false; 
+  optiuniCategorie: string[] = ['Utilaj agricol', 'Utilaj forestier', 'Utilaj de construcții', 'Altele'];
+
+  constructor(private echipamentService: EchipamentService, private fb: FormBuilder, private toast: NgToastService) {
     this.bsConfig = Object.assign({}, { dateInputFormat: 'YYYY-MM-DD' });
 
     this.utilajForm = this.fb.group({
@@ -79,6 +100,55 @@ export class EchipamentComponent implements OnInit {
     );
   }
 
+  mouseEnter(area: string) {
+    if (area === 'utilaje') {
+      this.showUtilajeCount = true;
+    } else if (area === 'vehicule') {
+      this.showVehiculeCount = true;
+    } else if (area === 'transporturi') {
+      this.showTransporturiCount = true;
+    }
+  }
+  mouseLeave(area: string) {
+    if (area === 'utilaje') {
+      this.showUtilajeCount = false;
+    } else if (area === 'vehicule') {
+      this.showVehiculeCount = false;
+    } else if (area === 'transporturi') {
+      this.showTransporturiCount = false;
+    }
+  }
+
+  toggleListaUtilaje(): void {
+    this.listaUtilaje = true;
+    this.listaVehicule = false;
+    this.listaTransporturi = false;
+  }
+  toggleListaVehicule(): void {
+    this.listaUtilaje = false;
+    this.listaVehicule = true;
+    this.listaTransporturi = false;
+  }
+  toggleListaTransporturi(): void {
+    this.listaUtilaje = false;
+    this.listaVehicule = false;
+    this.listaTransporturi = true;
+  }
+  hideForms() {
+    this.addUtilajModal = false;
+    this.editUtilajModal= false;
+  }
+
+  get totalUtilaje(): number {
+    return this.utilaje.length;
+  }
+
+  get totalVehicule(): number {
+    return this.vehicule.length;
+  }
+  get totalTransporturi():number{
+    return this.transport.length;
+  }
   getAllVehicule(): void {
     this.echipamentService.getAllVehicule().subscribe(
       data => {
@@ -105,12 +175,14 @@ export class EchipamentComponent implements OnInit {
     if (this.utilajForm.valid) {
       this.echipamentService.addUtilaje(this.utilajForm.value).subscribe(
         data => {
-          console.log('Utilaj added successfully');
+          console.log('Utilaj adaugat');
+          this.toast.success({detail:"Adăugat", summary:"Utilajul adăugat cu succes", duration: 6000});
           this.getAllUtilaje();
           this.utilajForm.reset();
+          this.addUtilajModal = false;
         },
         error => {
-          console.error('Error adding utilaj', error);
+          console.error('Error adaugare utilaj', error);
         }
       );
     }
@@ -119,6 +191,7 @@ export class EchipamentComponent implements OnInit {
   editUtilaj(utilaj: any): void {
     this.selectedUtilaj = utilaj;
     this.utilajForm.patchValue(utilaj);
+    this.editUtilajModal = true;
   }
 
   updateUtilaj(): void {
@@ -126,32 +199,34 @@ export class EchipamentComponent implements OnInit {
       const formData = { ...this.utilajForm.value, id: this.selectedUtilaj.id };
       this.echipamentService.updateUtilaje(formData).subscribe(
         data => {
-          console.log('Utilaj updated successfully');
+          console.log('Utilaj updatat');
+          this.toast.success({detail:"Actualizare", summary:"Modificarea s-a realizat cu succes!", duration: 7000});
           this.getAllUtilaje();
           this.utilajForm.reset();
+          this.editUtilajModal = false;
           this.selectedUtilaj = null;
         },
         error => {
-          console.error('Error updating utilaj', error);
+          console.error('Error editare utilaj', error);
         }
       );
     }
   }
 
   deleteUtilaj(utilajeId: number): void {
-    if (confirm('Are you sure you want to delete this utilaj?')) {
-      this.echipamentService.deleteUtilaje(utilajeId).subscribe(
-        data => {
-          console.log('Utilaj deleted successfully');
-          this.getAllUtilaje();
-        },
-        error => {
-          console.error('Error deleting utilaj', error);
-        }
-      );
-    }
+    this.echipamentService.deleteUtilaje(utilajeId).subscribe(
+      data => {
+        console.log('Utilaj deleted successfully');
+        this.toast.success({detail:"Ștergere", summary:"Ștergerea s-a realizat cu succes", duration: 7000});
+        this.getAllUtilaje();
+        
+      },
+      error => {
+        console.error('Error deleting utilaj', error);
+        this.toast.error({detail:"EROARE", summary:"Nu s-a putut realiza ștergerea", duration: 7000});
+      }
+    );
   }
-
 
   addVehicul(): void {
     if (this.vehiculForm.valid) {
@@ -160,6 +235,7 @@ export class EchipamentComponent implements OnInit {
           console.log('Vehicul added successfully');
           this.getAllVehicule();
           this.vehiculForm.reset();
+          this.addVehiculModal = false;
         },
         error => {
           console.error('Error adding vehicul', error);
@@ -171,6 +247,7 @@ export class EchipamentComponent implements OnInit {
   editVehicul(vehicul: any): void {
     this.selectedVehicul = vehicul;
     this.vehiculForm.patchValue(vehicul);
+    this.editVehiculModal = true;
   }
 
   updateVehicul(): void {
@@ -211,6 +288,7 @@ export class EchipamentComponent implements OnInit {
           console.log('Transport added successfully');
           this.getAllTransport();
           this.transportForm.reset();
+          this.addTransportModal = false;
         },
         error => {
           console.error('Error adding transport', error);
@@ -222,6 +300,7 @@ export class EchipamentComponent implements OnInit {
   editTransport(transport: any): void {
     this.selectedTransport = transport;
     this.transportForm.patchValue(transport);
+    this.editTransportModal = true;
   }
 
   updateTransport(): void {

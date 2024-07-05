@@ -1,66 +1,153 @@
 
-<div id="map"></div>
-<div class="calculation-box">
-    <p>Click the map to draw a polygon.</p>
-    <div id="calculated-area"></div>
-</div>
-<button (click)="showAddForm = true" *ngIf="!showAddForm">Adaugă teren nou</button>
-<div *ngIf="showAddForm">
-<form (ngSubmit)="saveDrawing()" #drawingForm="ngForm">
-  
-  <label for="stareTeren">Stare teren:</label>
-    <input type="text" id="stareTeren" name="stareTeren" [(ngModel)]="formData.stareTeren" required>
-  
-    <label for="tipCultura">Tip cultură:</label>
-    <input type="text" id="tipCultura" name="tipCultura" [(ngModel)]="formData.tipCultura" required>
-  
-    <label for="ultimaCultura">Ultima cultură:</label>
-    <input type="text" id="ultimaCultura" name="ultimaCultura" [(ngModel)]="formData.ultimaCultura" required>
-  
-    <label for="proprietarArenda">Proprietar cultură:</label>
-    <input type="text" id="proprietarArenda" name="proprietarArenda" [(ngModel)]="formData.proprietarArenda" required>
-  
-  
-    <label for="dateAcquired">Data cultură:</label>
-    <input type="text" id="dateAcquired" name="dateAcquired" [(ngModel)]="formData.dateAcquired" bsDatepicker required>
-      
-    <button type="submit" [disabled]="!drawingForm.valid">Salvează desen și date</button>
-  </form>
-</div>
-  <button (click)="onShowDrawingsButtonClick()">Load My Drawings</button>
-  <div *ngIf="drawings.length > 0">
-    <h2>My Drawings</h2>
-    <ul>
-      <li *ngFor="let drawing of drawings" (click)="selectDrawing(drawing)">
-        <p><strong>ID teren:</strong> {{ drawing.id }}</p>
-        
-      </li>
-    </ul>
+<div class="row">
+  <!-- Partea stângă a paginii pentru tabel -->
+  <div class="col-md-6">
+    <h2>Terenuri</h2>
+    <table class="table table-hover">
+      <thead class="table" style="max-height: 820px; overflow: auto;">
+        <tr>
+          <th>ID</th>
+          <th>Stare Teren</th>
+          <th>Tip Cultura</th>
+          <th>Ultima Cultura</th>
+          <th>Proprietar/Arenda</th>
+          <th>HA</th>
+          <th>Data Achizitiei</th>
+          <th>Acțiuni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Datele tabelului -->
+        <tr *ngFor="let drawing of drawings" (click)="selectDrawing(drawing)">
+          <td>{{ drawing.id }}</td>
+          <td>{{ drawing.stareTeren }}</td>
+          <td>{{ drawing.tipCultura }}</td>
+          <td>{{ drawing.ultimaCultura }}</td>
+          <td>{{ drawing.proprietarArenda }}</td>
+          <td>{{ drawing.area }}</td>
+          <td>{{ drawing.dateAcquired | date }}</td>
+          <td>
+            <div class="actiuni">
+              <button class="editare d-flex btn btn-warning" (click)="editDrawing(drawing); $event.stopPropagation();">Edit</button>
+              <button class="stergere d-flex btn btn-danger " (click)="deleteDrawing(drawing.id); $event.stopPropagation();">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div *ngIf="selectedDrawing">
-    <p><strong>Stare teren:</strong> {{ selectedDrawing.stareTeren }}</p>
-    <p><strong>Tip cultură:</strong> {{ selectedDrawing.tipCultura }}</p>
-    <p><strong>Area:</strong> {{ selectedDrawing.area }} HA</p>
-    <p><strong>Ultima cultură:</strong> {{ selectedDrawing.ultimaCultura }}</p>
-    <p><strong>Arenda cultură:</strong> {{ selectedDrawing.proprietarArenda }}</p>
-    <p><strong>Data cultură:</strong> {{ selectedDrawing.dateAcquired }}</p>
-    
-    <button (click)="editDrawing(selectedDrawing)">Edit</button>
-    <button (click)="deleteDrawing(selectedDrawing.id)">Delete</button>
+
+  <!-- Partea dreaptă a paginii pentru hartă -->
+  <div class="col-md-6">
+    <div id="map"></div>
+    <div class="calculation-box">
+      <p>Click the map to draw a polygon.</p>
+      <div id="calculated-area"></div>
+      <button class="adaugare btn btn-primary" (click)="showAddForm = true">Adaugă teren nou</button>
+  </div>
+  </div>
 </div>
-    
-<div *ngIf="showEditModal">
-  <h2>Edit Drawing</h2>
-  <form (ngSubmit)="updateDrawing()" #editForm="ngForm">
-     <label for="stareTeren">Stare teren:</label>
-     <input type="text" id="stareTeren" name="stareTeren" [(ngModel)]="formData.stareTeren" required>
-   
-     <label for="tipCultura">Tip cultură:</label>
-     <input type="text" id="tipCultura" name="tipCultura" [(ngModel)]="formData.tipCultura" required>
-   
-     <label for="ultimaCultura">Ultima cultură:</label>
-     <input type="text" id="ultimaCultura" name="ultimaCultura" [(ngModel)]="formData.ultimaCultura" required>
-   
-     <button type="submit" [disabled]="!editForm.valid">Update Drawing</button>
-  </form>
- </div>
+
+<!-- Modalul pentru adăugarea terenului -->
+<div *ngIf="showAddForm" class="modal fade show" tabindex="-1" style="display: block;" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adaugă teren nou</h5>
+        <button type="button" class="close" (click)="showAddForm = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formularul de adăugare a terenului -->
+        <form (ngSubmit)="saveDrawing()">
+          <div class="form-group">
+            <label for="stareTeren">Stare Teren:</label>
+            <select class="form-control" id="stareTeren" name="stareTeren" [(ngModel)]="formData.stareTeren" required>
+              <option value="">Selectează sau introdu o nouă opțiune</option>
+              <option value="Opțiune1">Opțiune 1</option>
+              <option value="Opțiune2">Opțiune 2</option>
+              <!-- Alte opțiuni prestabilite -->
+              <option value="Altul">Altul</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tipCultura">Tip Cultura:</label>
+            <select class="form-control" id="tipCultura" name="tipCultura" [(ngModel)]="formData.tipCultura" required>
+              <option value="">Selectează sau introdu o nouă opțiune</option>
+              <option value="Opțiune1">Opțiune 1</option>
+              <option value="Opțiune2">Opțiune 2</option>
+              <!-- Alte opțiuni prestabilite -->
+              <option value="Altul">Altul</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ultimaCultura">Ultima Cultura:</label>
+            <select class="form-control" id="ultimaCultura" name="ultimaCultura" [(ngModel)]="formData.ultimaCultura" required>
+              <option value="">Selectează sau introdu o nouă opțiune</option>
+              <option value="Opțiune1">Opțiune 1</option>
+              <option value="Opțiune2">Opțiune 2</option>
+              <!-- Alte opțiuni prestabilite -->
+              <option value="Altul">Altul</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="proprietarArenda">Proprietar/Arenda:</label>
+            <select class="form-control" id="proprietarArenda" name="proprietarArenda" [(ngModel)]="formData.proprietarArenda" required>
+              <option value="">Selectează sau introdu o nouă opțiune</option>
+              <option value="Opțiune1">Opțiune 1</option>
+              <option value="Opțiune2">Opțiune 2</option>
+              <!-- Alte opțiuni prestabilite -->
+              <option value="Altul">Altul</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dateAcquired">Data Achizitiei:</label>
+            <input type="date" class="form-control" id="dateAcquired" name="dateAcquired" [(ngModel)]="formData.dateAcquired" required>
+          </div>
+          <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal pentru editarea desenului -->
+<div *ngIf="showEditModal" class="modal fade show" tabindex="-1" style="display: block;" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Drawing</h5>
+        <button type="button" class="close" (click)="hideForms()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm" (ngSubmit)="updateDrawing()">
+          <div class="form-group">
+            <label for="stareTerenEdit">Stare Teren:</label>
+            <input type="text" class="form-control" id="stareTerenEdit" name="stareTeren" [(ngModel)]="formData.stareTeren" required>
+          </div>
+          <div class="form-group">
+            <label for="tipCulturaEdit">Tip Cultura:</label>
+            <input type="text" class="form-control" id="tipCulturaEdit" name="tipCultura" [(ngModel)]="formData.tipCultura" required>
+          </div>
+          <div class="form-group">
+            <label for="ultimaCulturaEdit">Ultima Cultura:</label>
+            <input type="text" class="form-control" id="ultimaCulturaEdit" name="ultimaCultura" [(ngModel)]="formData.ultimaCultura" required>
+          </div>
+          <div class="form-group">
+            <label for="proprietarArendaEdit">Proprietar/Arenda:</label>
+            <input type="text" class="form-control" id="proprietarArendaEdit" name="proprietarArenda" [(ngModel)]="formData.proprietarArenda" required>
+          </div>
+          <div class="form-group">
+            <label for="dateAcquiredEdit">Data Achizitiei:</label>
+            <input type="date" class="form-control" id="dateAcquiredEdit" name="dateAcquired" [(ngModel)]="formData.dateAcquired" required>
+          </div>
+          <button type="submit" class="btn btn-success">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,17 +12,14 @@ import { NgToastService } from 'ng-angular-popup';
 export class AuthGuard implements CanActivate{
   constructor(private auth: AuthService, private router: Router, private toast: NgToastService) {}
 
-
   canActivate(
-   // next: ActivatedRouteSnapshot,
-   // state:RouterStateSnapshot
   ): boolean {
     console.log("authguard is called");
     if(this.auth.isLoggedIn()){
       return true;
     }
     else {
-      this.toast.error({detail:"ERROR", summary:"Please login First!"})
+      this.toast.error({detail:"ERROR", summary:"Vă rugăm să vă autentificați!"})
       this.router.navigate(['login']);
       return false;
     }

@@ -13,6 +13,8 @@ export class StaffComponent implements OnInit {
   selectedAngajat: any = null;
   bsConfig: Partial<BsDatepickerConfig>;
 
+  addAngajatModal: boolean = false;
+  editAngajatModal: boolean = false;
 
   constructor(private staffService: StaffService, private fb: FormBuilder) {
     this.bsConfig = Object.assign({}, { dateInputFormat: 'YYYY-MM-DD' });
@@ -30,6 +32,7 @@ export class StaffComponent implements OnInit {
   getAllAngajati(): void {
     this.staffService.getAllAngajati().subscribe(
       data => {
+        console.log(data);
         this.angajati = data;
       },
       error => {
@@ -45,6 +48,7 @@ export class StaffComponent implements OnInit {
           console.log('Angajat added successfully');
           this.getAllAngajati();
           this.angajatForm.reset();
+          this.addAngajatModal = false;
         },
         error => {
           console.error('Error adding angajat', error);
@@ -56,6 +60,7 @@ export class StaffComponent implements OnInit {
   editAngajat(angajat: any): void {
     this.selectedAngajat = angajat;
     this.angajatForm.patchValue(angajat);
+    this.editAngajatModal = true;
   }
 
   updateAngajat(): void {

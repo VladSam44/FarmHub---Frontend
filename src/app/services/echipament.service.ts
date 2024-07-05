@@ -58,7 +58,6 @@ export class EchipamentService {
       brand: data.brand,
       model: data.model,
       putere: data.putere,
-      greutate: data.greutate,
       anFabricatie: data.anFabricatie,
       oreFunctionare: data.oreFunctionare,
       dataAchizitie: data.dataAchizitie,

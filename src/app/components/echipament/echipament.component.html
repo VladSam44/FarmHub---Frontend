@@ -1,165 +1,402 @@
-<p>echipament works!</p>
-<div class="container">
-    <h1>Echipament Management</h1>
-  
-    <div>
-      <h2>Utilaje</h2>
-      <form [formGroup]="utilajForm" (ngSubmit)="selectedUtilaj ? updateUtilaj() : addUtilaj()">
-        <!-- Form fields for Utilaje -->
-        <div>
-          <label for="categorie">Categorie</label>
-          <input id="categorie" formControlName="categorie">
-        </div>
-        <div>
-          <label for="brand">Brand</label>
-          <input id="brand" formControlName="brand">
-        </div>
-        <div>
-          <label for="model">Model</label>
-          <input id="model" formControlName="model">
-        </div>
-        <div>
-          <label for="putereNecesara">Putere Necesara</label>
-          <input id="putereNecesara" formControlName="putereNecesara">
-        </div>
-        <div>
-          <label for="greutate">Greutate</label>
-          <input id="greutate" formControlName="greutate">
-        </div>
-        <div>
-          <label for="anFabricatie">An Fabricatie</label>
-          <input id="anFabricatie" formControlName="anFabricatie">
-        </div>
-        <div>
-          <label for="oreFunctionare">Ore Functionare</label>
-          <input id="oreFunctionare" formControlName="oreFunctionare">
-        </div>
-        <div>
-          <label for="dataAchizitie">Data Achizitie</label>
-          <input id="dataAchizitie" formControlName="dataAchizitie" bsDatepicker [bsConfig]="bsConfig">
-        </div>
-        <div>
-          <label for="pretAchizitie">Pret Achizitie</label>
-          <input id="pretAchizitie" formControlName="pretAchizitie">
-        </div>
-        <div>
-          <label for="ultimaMentenanta">Ultima Mentenanta</label>
-          <input id="ultimaMentenanta" formControlName="ultimaMentenanta" bsDatepicker [bsConfig]="bsConfig">
-        </div>
-        <button type="submit">{{ selectedUtilaj ? 'Update' : 'Add' }} Utilaj</button>
-      </form>
-  
-      <ul>
-        <li *ngFor="let utilaj of utilaje">
-          {{ utilaj.brand }} - {{ utilaj.model }}
-          <button (click)="editUtilaj(utilaj)">Edit</button>
-          <button (click)="deleteUtilaj(utilaj.id)">Delete</button>
-        </li>
-      </ul>
-    </div>
-  
-    <div>
-      <h2>Vehicule</h2>
-      <form [formGroup]="vehiculForm" (ngSubmit)="selectedVehicul ? updateVehicul() : addVehicul()">
-        <!-- Form fields for Vehicule -->
-        <div>
-          <label for="categorieVehicul">Categorie</label>
-          <input id="categorieVehicul" formControlName="categorie">
-        </div>
-        <div>
-          <label for="brandVehicul">Brand</label>
-          <input id="brandVehicul" formControlName="brand">
-        </div>
-        <div>
-          <label for="modelVehicul">Model</label>
-          <input id="modelVehicul" formControlName="model">
-        </div>
-        <div>
-          <label for="putere">Putere</label>
-          <input id="putere" formControlName="putere">
-        </div>
-        <div>
-          <label for="greutateVehicul">Greutate</label>
-          <input id="greutateVehicul" formControlName="greutate">
-        </div>
-        <div>
-          <label for="anFabricatieVehicul">An Fabricatie</label>
-          <input id="anFabricatieVehicul" formControlName="anFabricatie">
-        </div>
-        <div>
-          <label for="oreFunctionareVehicul">Ore Functionare</label>
-          <input id="oreFunctionareVehicul" formControlName="oreFunctionare">
-        </div>
-        <div>
-          <label for="dataAchizitieVehicul">Data Achizitie</label>
-          <input id="dataAchizitieVehicul" formControlName="dataAchizitie" bsDatepicker [bsConfig]="bsConfig">
-        </div>
-        <div>
-          <label for="pretAchizitieVehicul">Pret Achizitie</label>
-          <input id="pretAchizitieVehicul" formControlName="pretAchizitie">
-        </div>
-        <div>
-          <label for="ultimaMentenantaVehicul">Ultima Mentenanta</label>
-          <input id="ultimaMentenantaVehicul" formControlName="ultimaMentenanta" bsDatepicker [bsConfig]="bsConfig">
-        </div>
-        <button type="submit">{{ selectedVehicul ? 'Update' : 'Add' }} Vehicul</button>
-      </form>
-  
-      <ul>
-        <li *ngFor="let vehicul of vehicule">
-          {{ vehicul.brand }} - {{ vehicul.model }}
-          <button (click)="editVehicul(vehicul)">Edit</button>
-          <button (click)="deleteVehicul(vehicul.id)">Delete</button>
-        </li>
-      </ul>
-    </div>
-  
-    <div>
-      <h2>Transport</h2>
-      <form [formGroup]="transportForm" (ngSubmit)="selectedTransport ? updateTransport() : addTransport()">
-        <!-- Form fields for Transport -->
-        <div>
-          <label for="categorieTransport">Categorie</label>
-          <input id="categorieTransport" formControlName="categorie">
-        </div>
-        <div>
-          <label for="brandTransport">Brand</label>
-          <input id="brandTransport" formControlName="brand">
-        </div>
-        <div>
-          <label for="capacitateTransport">Capacitate</label>
-          <input id="capacitateTransport" formControlName="capacitate">
-        </div>
-        <div>
-          <label for="anFabricatieTransport">An Fabricatie</label>
-          <input id="anFabricatieTransport" formControlName="anFabricatie">
-        </div>
-        <div>
-          <label for="tipAtasamentTransport">Tip Atasament</label>
-          <input id="tipAtasamentTransport" formControlName="tipAtasament">
-        </div>
-        <div>
-          <label for="dataAchizitieTransport">Data Achizitie</label>
-          <input id="dataAchizitieTransport" formControlName="dataAchizitie" bsDatepicker [bsConfig]="bsConfig">
-        </div>
-        <div>
-          <label for="pretAchizitieTransport">Pret Achizitie</label>
-          <input id="pretAchizitieTransport" formControlName="pretAchizitie">
-        </div>
-        <div>
-          <label for="ultimaMentenantaTransport">Ultima Mentenanta</label>
-          <input id="ultimaMentenantaTransport" formControlName="ultimaMentenanta" bsDatepicker [bsConfig]="bsConfig">
-        </div>
-        <button type="submit">{{ selectedTransport ? 'Update' : 'Add' }} Transport</button>
-      </form>
-  
-      <ul>
-        <li *ngFor="let transport of transport">
-          {{ transport.brand }} - {{ transport.capacitate }}
-          <button (click)="editTransport(transport)">Edit</button>
-          <button (click)="deleteTransport(transport.id)">Delete</button>
-        </li>
-      </ul>
+<div class="outer">
+<div class="container-fluid" >
+  <div class="row" >
+    <div class="col-md-2 d-flex ">
+      <div class="d-flex flex-column align-items-end">
+      <button mat-icon-button class="custom-icon-button mb-4"
+              (mouseenter)="mouseEnter('utilaje')" 
+              (mouseleave)="mouseLeave('utilaje')"
+              (click)="toggleListaUtilaje()">
+        <mat-icon>agriculture</mat-icon>
+        <span *ngIf="showUtilajeCount" class="count-badge">{{ totalUtilaje }}</span>
+      </button>
+      <button mat-icon-button class="custom-icon-button  mb-4"
+              (mouseenter)="mouseEnter('vehicule')" 
+              (mouseleave)="mouseLeave('vehicule')"
+              (click)="toggleListaVehicule()">
+        <mat-icon>directions_car</mat-icon>
+        <span *ngIf="showVehiculeCount" class="count-badge">{{ totalVehicule }}</span>
+      </button>
+      <button mat-icon-button class="custom-icon-button mb-4"
+              (mouseenter)="mouseEnter('transporturi')" 
+              (mouseleave)="mouseLeave('transporturi')"
+              (click)="toggleListaTransporturi()">
+        <mat-icon>local_shipping</mat-icon>
+        <span *ngIf="showTransporturiCount" class="count-badge">{{ totalTransporturi }}</span>
+      </button>
     </div>
   </div>
+
+  <div class="col-md-10" >
+    <div *ngIf="listaUtilaje" style="max-height: 820px; overflow: auto;" class="table-container">
+      <div class="add-button-container">
+        <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addUtilajModal = true">
+          Adaugă
+        </button>
+      </div>
+        <table class="table custom-table" >
+          <thead class="table" >
+            <tr>
+              <th>Utilaj</th>
+              <th>Marcă</th>
+              <th>Model</th>
+              <th>Putere necesară</th>
+              <th>Greutate</th>
+              <th>An fabricație</th>
+              <th>Ore de funcționare</th>
+              <th>Data achiziție</th>
+              <th>Preț achiziție</th>
+              <th>Ultima mentenanță</th>
+              <th>Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let utilaj of utilaje">
+              <td>{{ utilaj.categorie }}</td>
+              <td>{{ utilaj.brand }}</td>
+              <td>{{ utilaj.model }}</td>
+              <td>{{ utilaj.putereNecesara }} CP</td>
+              <td>{{ utilaj.greutate }} KG</td>
+              <td>{{ utilaj.anFabricatie }}</td>
+              <td>{{ utilaj.oreFunctionare }}</td>
+              <td>{{ utilaj.dataAchizitie | date }}</td>
+              <td>{{ utilaj.pretAchizitie | currency:'EUR ' }}</td>
+              <td>{{ utilaj.ultimaMentenanta | date }}</td>
+              <td>
+                <button class="btn btn-sm btn-warning btn-custom btn-edit" (click)="editUtilaj(utilaj)">
+                  <mat-icon>edit_square</mat-icon>
+                </button>
+                <button class="btn btn-sm btn-danger btn-custom btn-delete" (click)="deleteUtilaj(utilaj.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
   
+
+  <div class="col-md-12">
+  <div *ngIf="listaVehicule" style="max-height: 800px; overflow: auto;" class="table-container">
+    <div class="add-button-container">
+      <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addVehiculModal = true">
+        Adaugă
+      </button>
+    </div>
+    <table class="table custom-table">
+      <thead class="table ">
+        <tr>
+          <th>Utilaj</th>
+          <th>Marcă</th>
+          <th>Model</th>
+          <th>Putere necesară</th>
+          <th>An fabricație</th>
+          <th>Ore de funcționare</th>
+          <th>Data achiziție</th>
+          <th>Preț achiziție</th>
+          <th>Ultima mentenanță</th>
+          <th>Acțiuni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicul of vehicule">
+          <td>{{ vehicul.categorie }}</td>
+          <td>{{ vehicul.brand }}</td>
+          <td>{{ vehicul.model }}</td>
+          <td>{{ vehicul.putere }} CP</td>
+          <td>{{ vehicul.anFabricatie }}</td>
+          <td>{{ vehicul.oreFunctionare }}</td>
+          <td>{{ vehicul.dataAchizitie | date }}</td>
+          <td>{{ vehicul.pretAchizitie | currency:'EUR ' }}</td>
+          <td>{{ vehicul.ultimaMentenanta | date }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning btn-custom btn-edit" (click)="editVehicul(vehicul)">
+              <mat-icon>edit_square</mat-icon>
+            </button>
+            <button class="btn btn-sm btn-danger btn-custom btn-delete" (click)="deleteVehicul(vehicul.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="col-md-12"> 
+  <div *ngIf="listaTransporturi" style="max-height: 700px; overflow: auto;" class="table-container">
+    <div class="add-button-container">
+      <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addTransportModal = true">
+        Adaugă
+      </button>
+    </div>
+    <table class="table custom-table">
+      <thead class="table">
+        <tr>
+          <th>Categorie</th>
+          <th>Marcă</th>
+          <th>Capacitate</th>
+          <th>An fabricație</th>
+          <th>Data achiziție</th>
+          <th>Preț achiziție</th>
+          <th>Ultima mentenanță</th>
+          <th>Tip atașament</th>
+          <!-- Alte coloane specifice -->
+          <th>Acțiuni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transport of transport">
+          <td>{{ transport.categorie }}</td>
+          <td>{{ transport.brand }}</td>
+          <td>{{ transport.capacitate }}</td>
+          <td>{{ transport.anFabricatie }}</td>
+          <td>{{ transport.dataAchizitie | date }}</td>
+          <td>{{ transport.pretAchizitie | currency:'EUR ' }}</td>
+          <td>{{ transport.ultimaMentenanta | date }}</td>
+          <td>{{ transport.tipAtasament }}</td>
+          <td>
+            <button id="editBtn-{{transport.id}}" class="btn btn-sm btn-primary btn-custom btn-edit" (click)="editTransport(transport)">
+              <mat-icon class="custom-icon">edit_square</mat-icon>
+            </button>
+            <button id="deleteBtn-{{transport.id}}" class="btn btn-sm btn-danger btn-custom btn-delete" (click)="deleteTransport(transport.id)">
+              <mat-icon class="custom-icon">delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>1
+</div>
+
+
+<!-- Modale -->
+<div *ngIf="addUtilajModal" class="modal fade show" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="addUtilajModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adăugare Utilaj Nou</h5>
+        <button  class="btn btn-sm btn-close" (click)="addVehiculModal = false; addUtilajModal = false;">
+        </button>
+
+      </div>
+      <div class="modal-body">
+       
+        <form [formGroup]="utilajForm" (ngSubmit)="addUtilaj()">
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+            <select class="form-control" id="categorie" formControlName="categorie">
+              <option value="">Selectează categorie</option>
+              <option *ngFor="let optiune of optiuniCategorie" [value]="optiune">{{ optiune }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand" formControlName="brand">
+          </div>
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" class="form-control" id="model" formControlName="model">
+          </div>
+          <div class="form-group">
+            <label for="putereNecesara">Putere Necesară</label>
+            <input type="number" class="form-control" id="putereNecesara" formControlName="putereNecesara">
+          </div>
+          <div class="form-group">
+            <label for="greutate">Greutate</label>
+            <input type="number" class="form-control" id="greutate" formControlName="greutate">
+          </div>
+          <div class="form-group">
+            <label for="anFabricatie">An Fabricație</label>
+            <input type="number" class="form-control" id="anFabricatie" formControlName="anFabricatie">
+          </div>
+          <div class="form-group">
+            <label for="oreFunctionare">Ore de Funcționare</label>
+            <input type="number" class="form-control" id="oreFunctionare" formControlName="oreFunctionare">
+          </div>
+          <div class="form-group">
+            <label for="dataAchizitie">Data Achiziției</label>
+            <input type="date" class="form-control" id="dataAchizitie" formControlName="dataAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="pretAchizitie">Preț Achiziție</label>
+            <input type="number" class="form-control" id="pretAchizitie" formControlName="pretAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="ultimaMentenanta">Ultima Mentenanță</label>
+            <input type="date" class="form-control" id="ultimaMentenanta" formControlName="ultimaMentenanta">
+          </div>
+
+          <button type="submit" class="btn btn-primary"> <i class="fa fa-plus"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="editUtilajModal" class="modal fade show" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="editUtilajModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editare Utilaj</h5>
+        <button  class="btn btn-sm btn-close" (click)="editUtilajModal = false;">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="utilajForm" (ngSubmit)="updateUtilaj()">
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+            <select class="form-control" id="categorie" formControlName="categorie">
+              <option value="">Selectează categorie</option>
+              <option *ngFor="let optiune of optiuniCategorie" [value]="optiune">{{ optiune }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand" formControlName="brand">
+          </div>
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" class="form-control" id="model" formControlName="model">
+          </div>
+          <div class="form-group">
+            <label for="putereNecesara">Putere Necesară</label>
+            <input type="number" class="form-control" id="putereNecesara" formControlName="putereNecesara">
+          </div>
+          <div class="form-group">
+            <label for="greutate">Greutate</label>
+            <input type="number" class="form-control" id="greutate" formControlName="greutate">
+          </div>
+          <div class="form-group">
+            <label for="anFabricatie">An Fabricație</label>
+            <input type="number" class="form-control" id="anFabricatie" formControlName="anFabricatie">
+          </div>
+          <div class="form-group">
+            <label for="oreFunctionare">Ore de Funcționare</label>
+            <input type="number" class="form-control" id="oreFunctionare" formControlName="oreFunctionare">
+          </div>
+          <div class="form-group">
+            <label for="dataAchizitie">Data Achiziției</label>
+            <input type="date" class="form-control" id="dataAchizitie" formControlName="dataAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="pretAchizitie">Preț Achiziție</label>
+            <input type="number" class="form-control" id="pretAchizitie" formControlName="pretAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="ultimaMentenanta">Ultima Mentenanță</label>
+            <input type="date" class="form-control" id="ultimaMentenanta" formControlName="ultimaMentenanta">
+          </div>
+          <button type="submit" class="btn btn-primary">Salvează Modificările</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="addVehiculModal || editVehiculModal" class="modal fade show modal-custom" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="vehiculModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">{{ addVehiculModal ? 'Adăugare Vehicul Nou' : 'Editare Vehicul' }}</h5>
+        <button  class="btn btn-sm btn-close" (click)="addVehiculModal = false; editVehiculModal = false;">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="vehiculForm" (ngSubmit)="addVehiculModal ? addVehicul() : updateVehicul()">
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+            <input type="text" class="form-control form-control-custom" id="categorie" formControlName="categorie">
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control form-control-custom" id="brand" formControlName="brand">
+          </div>
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" class="form-control form-control-custom" id="model" formControlName="model">
+          </div>
+          <div class="form-group">
+            <label for="putere">Putere (CP)</label>
+            <input type="number" class="form-control form-control-custom" id="putere" formControlName="putere">
+          </div>
+          <div class="form-group">
+            <label for="greutate">Greutate (kg)</label>
+            <input type="number" class="form-control form-control-custom" id="greutate" formControlName="greutate">
+          </div>
+          <div class="form-group">
+            <label for="anFabricatie">An Fabricație</label>
+            <input type="number" class="form-control form-control-custom" id="anFabricatie" formControlName="anFabricatie">
+          </div>
+          <div class="form-group">
+            <label for="oreFunctionare">Ore de Funcționare</label>
+            <input type="number" class="form-control form-control-custom" id="oreFunctionare" formControlName="oreFunctionare">
+          </div>
+          <div class="form-group">
+            <label for="dataAchizitie">Data Achiziție</label>
+            <input type="date" class="form-control form-control-custom" id="dataAchizitie" formControlName="dataAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="pretAchizitie">Preț Achiziție</label>
+            <input type="number" class="form-control form-control-custom" id="pretAchizitie" formControlName="pretAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="ultimaMentenanta">Ultima Mentenanță</label>
+            <input type="date" class="form-control form-control-custom" id="ultimaMentenanta" formControlName="ultimaMentenanta">
+          </div>
+          <button type="submit" class="btn btn-primary  btn-submit-custom">{{ addVehiculModal ? 'Adăugă Vehicul' : 'Salvează Modificările' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="addTransportModal || editTransportModal" class="modal fade show" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="transportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ addTransportModal ? 'Adăugare Transport Nou' : 'Editare Transport' }}</h5>
+        <button  class="btn btn-sm btn-close" (click)="addTransportModal = false; editTransportModal = false;">
+        </button>
+
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="transportForm" (ngSubmit)="addTransportModal ? addTransport() : updateTransport()">
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+            <input type="text" class="form-control" id="categorie" formControlName="categorie">
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand" formControlName="brand">
+          </div>
+          <div class="form-group">
+            <label for="capacitate">Capacitate (ton)</label>
+            <input type="number" class="form-control" id="capacitate" formControlName="capacitate">
+          </div>
+          <div class="form-group">
+            <label for="anFabricatie">An Fabricație</label>
+            <input type="number" class="form-control" id="anFabricatie" formControlName="anFabricatie">
+          </div>
+          <div class="form-group">
+            <label for="tipAtasament">Tip Atașament</label>
+            <input type="text" class="form-control" id="tipAtasament" formControlName="tipAtasament">
+          </div>
+          <div class="form-group">
+            <label for="dataAchizitie">Data Achiziție</label>
+            <input type="date" class="form-control" id="dataAchizitie" formControlName="dataAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="pretAchizitie">Preț Achiziție</label>
+            <input type="number" class="form-control" id="pretAchizitie" formControlName="pretAchizitie">
+          </div>
+          <div class="form-group">
+            <label for="ultimaMentenanta">Ultima Mentenanță</label>
+            <input type="date" class="form-control" id="ultimaMentenanta" formControlName="ultimaMentenanta">
+          </div>
+          <button type="submit" class="btn btn-primary">{{ addTransportModal ? 'Adăugă Transport' : 'Salvează Modificările' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modale -->

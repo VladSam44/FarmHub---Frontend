@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './resurse.component.scss'
 })
 export class ResurseComponent {
+  showAddProduct: boolean = true;
 
+  toggleAddProduct(): void {
+    
+    this.showAddProduct = !this.showAddProduct;
+  }
 }

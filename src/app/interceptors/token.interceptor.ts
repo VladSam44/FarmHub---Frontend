@@ -27,10 +27,11 @@ export class TokenInterceptor implements HttpInterceptor {
             return this.handleUnAuthorizedError(request, next);
           }
         }
-        return throwError(()=> new Error ("Some other error occured"))
+        return throwError(()=> new Error ("Eroare"))
       })
     );
   }
+
   handleUnAuthorizedError(req: HttpRequest<any>, next: HttpHandler){
     
     let tokeApiModel = new TokenApiModel();

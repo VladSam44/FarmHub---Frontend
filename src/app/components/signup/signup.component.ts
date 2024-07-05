@@ -94,7 +94,7 @@ export class SignupComponent {
         })
       })
     } else {
-      ValidateForm.validateAllFormFileds(this.signUpForm); //{7}
+      ValidateForm.validateAllFormFileds(this.signUpForm); 
     }
   }
   

@@ -1,22 +1,31 @@
+.outer{
+    height: 100%;
+    background: linear-gradient(to top, #d4ffc9 50%, #6ef675 90%) no-repeat;
+    display: flex; /* Utilizăm flexbox pentru a centra conținutul vertical și orizontal */
+    justify-content: center; /* Aliniere orizontală la centru */
+  }
+  
+
 #map {
-    height: 50vh;
-    width: 50%;
+    height: 80vh;
+    width: 98%;
     position: relative;
-}
-.btn {
-    z-index: 2;
-    padding: 10px;
-    width: 30px;
-    position: absolute;
+    border: 3px solid black;
 }
 
+table{
+    margin-left: 5px;
+}
+.adaugare{
+    margin-top: 50px;
+}
 .calculation-box {
     height: 75px;
     width: 150px;
     position: relative;
-    bottom: 40px;
+    bottom: 110px;
     left: 10px;
-    background-color: rgba(160, 39, 39, 0.9);
+    background-color: rgba(160, 39, 39, 0.719);
     padding: 15px;
     text-align: center;
 }
@@ -25,3 +34,24 @@
     margin: 0;
     font-size: 13px;
 }
+.stergere{
+    width: 10vh;
+    text-align: center;
+}
+.editare{
+    width: 10vh;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.actiuni{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    text-align: center;
+    margin-bottom: 10px;
+    
+}
+td {
+    vertical-align: top; /* Ensure cells align content to the top */
+  }
+  

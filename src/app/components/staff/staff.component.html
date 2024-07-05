@@ -1,38 +1,76 @@
-<div class="container">
+<div class="outer">
+  <div style="max-height: 820px; overflow: auto;" class="table-container">
     <h1>Staff Management</h1>
-  
-    <form [formGroup]="angajatForm" (ngSubmit)="selectedAngajat ? updateAngajat() : addAngajat()">
-      
-      <div>
-        <label for="nume">Nume</label>
-        <input id="nume" formControlName="nume">
-      </div>
-      <div>
-        <label for="pozitie">Pozitie</label>
-        <input id="pozitie" formControlName="pozitie">
-      </div>
-      <div>
-        <label for="salariu">Salariu</label>
-        <input id="salariu" formControlName="salariu">
-      </div>
-      <div>
-        <label for="hiredate">Hire Date</label>
-        <input id="hiredate" formControlName="hiredate" bsDatepicker [bsConfig]="bsConfig">
-      </div>
-      <div>
-        <label for="expirareContract">Expirare Contract</label>
-        <input id="expirareContract" formControlName="expirareContract" bsDatepicker [bsConfig]="bsConfig">
-      </div>
-  
-      <button type="submit">{{ selectedAngajat ? 'Update' : 'Add' }} Angajat</button>
-    </form>
-  
-    <ul>
-      <li *ngFor="let angajat of angajati">
-        {{ angajat.nume }} - {{ angajat.pozitie }}
-        <button (click)="editAngajat(angajat)">Edit</button>
-        <button (click)="deleteAngajat(angajat.id)">Delete</button>
-      </li>
-    </ul>
+    <div class="add-button-container">
+      <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addAngajatModal = true">
+        Adaugă Angajat
+      </button>
+    </div>
+    <table class="table custom-table">
+      <thead>
+        <tr>
+          <th>Nume</th>
+          <th>Pozitie</th>
+          <th>Salariu</th>
+          <th>Hire Date</th>
+          <th>Expirare Contract</th>
+          <th>Acțiuni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let angajat of angajati">
+          <td>{{ angajat.nume }}</td>
+          <td>{{ angajat.pozitie }}</td>
+          <td>{{ angajat.salariu }}</td>
+          <td>{{ angajat.hireDate | date }}</td>
+          <td>{{ angajat.expirareContract | date }}</td>
+          <td>
+            <button id="editBtn-{{angajat.id}}"class="btn btn-sm btn-warning btn-custom btn-edit" (click)="editAngajat(angajat)">
+              <mat-icon>edit_square</mat-icon>
+            </button>
+            <button id="deleteBtn-{{angajat.id}}" class="btn btn-sm btn-danger btn-custom btn-delete" (click)="deleteAngajat(angajat.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>
+
+<div *ngIf="addAngajatModal || editAngajatModal" class="modal fade show modal-custom" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="angajatModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title">{{ addAngajatModal ? 'Adăugare Angajat Nou' : 'Editare Angajat' }}</h5>
+        <button class="btn btn-sm btn-close" (click)="addAngajatModal = false; editAngajatModal = false;">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="angajatForm" (ngSubmit)="addAngajatModal ? addAngajat() : updateAngajat()">
+          <div class="form-group">
+            <label for="nume">Nume</label>
+            <input type="text" class="form-control form-control-custom" id="nume" formControlName="nume">
+          </div>
+          <div class="form-group">
+            <label for="pozitie">Pozitie</label>
+            <input type="text" class="form-control form-control-custom" id="pozitie" formControlName="pozitie">
+          </div>
+          <div class="form-group">
+            <label for="salariu">Salariu</label>
+            <input type="number" class="form-control form-control-custom" id="salariu" formControlName="salariu">
+          </div>
+          <div class="form-group">
+            <label for="hiredate">Hire Date</label>
+            <input type="date" class="form-control form-control-custom" id="hiredate" formControlName="hiredate">
+          </div>
+          <div class="form-group">
+            <label for="expirareContract">Expirare Contract</label>
+            <input type="date" class="form-control form-control-custom" id="expirareContract" formControlName="expirareContract">
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit-custom">{{ addAngajatModal ? 'Adăugă Angajat' : 'Salvează Modificările' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

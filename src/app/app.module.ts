@@ -13,12 +13,10 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ResetComponent } from './components/reset/reset.component';
 import { ResurseComponent } from './components/resurse/resurse.component';
 import { MeteoComponent } from './components/meteo/meteo.component';
-import { UtilajeComponent } from './components/utilaje/utilaje.component';
 import { FinanciarComponent } from './components/financiar/financiar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { ExperimenteComponent } from './components/experimente/experimente.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HartaComponent } from './components/harta/harta.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -27,6 +25,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { StaffComponent } from './components/staff/staff.component';
 import { EchipamentComponent } from './components/echipament/echipament.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import {MatIconModule} from '@angular/material/icon';
+import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
+import { WeatherMapComponent } from './components/weather-map/weather-map.component';
 
 @NgModule({
   declarations: [
@@ -37,15 +39,15 @@ import { EchipamentComponent } from './components/echipament/echipament.componen
     ResetComponent,
     ResurseComponent,
     MeteoComponent,
-    UtilajeComponent,
     FinanciarComponent,
     NavbarComponent,
     ChatBotComponent,
     WelcomeComponent,
-    ExperimenteComponent,
     HartaComponent,
     StaffComponent,
     EchipamentComponent,
+    WeatherWidgetComponent,
+    WeatherMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,13 +60,16 @@ import { EchipamentComponent } from './components/echipament/echipament.componen
     BsDatepickerModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatIconModule,
 
   ],
-  providers: [ {
+  providers: [
+     {
     provide:HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi:true
 }, provideAnimationsAsync()],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

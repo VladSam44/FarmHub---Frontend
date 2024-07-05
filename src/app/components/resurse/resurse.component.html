@@ -1,2 +1,13 @@
 <p>resurse works!</p>
-]
+<div class="col-md-4 ml-auto mt-3">
+    <div class="row mb-3">
+     <div class="adaugare col-12 text-right">
+         <p class="text-dark ms-3" (click)="toggleAddProduct()">
+             <b>Adaugă Produs </b>
+             <i class="fa" [ngClass]="{'fa-chevron-up': showAddProduct, 'fa-chevron-down': !showAddProduct}"></i>
+         </p>
+     </div>
+ </div> 
+<div *ngIf="showAddProduct">
+    asdas
+</div> 

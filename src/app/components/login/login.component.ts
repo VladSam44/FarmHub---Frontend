@@ -47,9 +47,7 @@ export class LoginComponent {
 
   onLogin(){
     if(this.loginForm.valid){
-    
       console.log(this.loginForm.value)
-
       this.auth.login(this.loginForm.value)
       .subscribe({
         next:(res)=> {
@@ -72,7 +70,7 @@ export class LoginComponent {
     else{
 
       ValidateForm.validateAllFormFileds(this.loginForm);
-      
+
       this.toast.info({detail: "Completati ambele formulare!", summary: "Incomplet", duration: 7000});
     }
   }
@@ -88,8 +86,6 @@ export class LoginComponent {
     if(this.checkValidEmail(this.resetPasswordEmail)){
       console.log(this.resetPasswordEmail);
       
-      //un apel la fratele api
-
       this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
       .subscribe({
         next:(res)=>{

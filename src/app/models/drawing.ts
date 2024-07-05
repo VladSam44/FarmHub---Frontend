@@ -1,5 +1,5 @@
 export class Drawing {
-    id?: number;
+    id!: number;
     userId?: number;
     coordinates = "";
     stareTeren = "";
@@ -7,6 +7,6 @@ export class Drawing {
     area?: number;
     dateAcquired?: Date;
     ultimaCultura = "";
-    propreitarArenda = "";
+    proprietarArenda = "";
         
 }

@@ -21,7 +21,6 @@ getAllDrawings(): Observable<any[]> {
 }
 
 addDrawing(data: any): Observable<any> {
-  console.log(`mesaj data:`);
     const coordinatesJson = JSON.stringify(data.coordinates);
     return this.http.post<any>(`${this.apiUrl}POST`, {
       coordinates: coordinatesJson,
