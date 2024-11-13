@@ -7,15 +7,12 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ResetComponent } from './components/reset/reset.component';
 import { ResurseComponent } from './components/resurse/resurse.component';
 import { MeteoComponent } from './components/meteo/meteo.component';
-import { FinanciarComponent } from './components/financiar/financiar.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HartaComponent } from './components/harta/harta.component';
@@ -29,19 +26,18 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {MatIconModule} from '@angular/material/icon';
 import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
 import { WeatherMapComponent } from './components/weather-map/weather-map.component';
+import { DatePipe } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent,
     ResetComponent,
     ResurseComponent,
     MeteoComponent,
-    FinanciarComponent,
     NavbarComponent,
-    ChatBotComponent,
     WelcomeComponent,
     HartaComponent,
     StaffComponent,
@@ -61,10 +57,11 @@ import { WeatherMapComponent } from './components/weather-map/weather-map.compon
     MatFormFieldModule,
     MatDialogModule,
     MatIconModule,
-
+    NgxSpinnerModule.forRoot(),
   ],
-  providers: [
+  providers: [ [DatePipe],
      {
+
     provide:HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi:true

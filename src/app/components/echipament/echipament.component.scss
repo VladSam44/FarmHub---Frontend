@@ -1,56 +1,56 @@
 .outer{
   height: 100%;
   background: linear-gradient(to top, #d4ffc9 50%, #6ef675 90%) no-repeat;
-  display: flex; /* Utilizăm flexbox pentru a centra conținutul vertical și orizontal */
-  justify-content: center; /* Aliniere orizontală la centru */
+  display: flex; 
+  justify-content: center; 
 }
 
   .custom-icon-button {
-    background-color: #4caf50; /* Fundal alb pentru buton */
+    background-color: #4caf50; 
     margin-top: 5%;
-    color: white; /* Culoarea iconiței și textului (verde) */
-    width: 220px; /* Lățimea butonului */
-    height: 80px; /* Înălțimea butonului */
-    padding: 8px 16px; /* Spațierea internă */
-    border: 4px solid #4caf50; /* Bordura verde */
-    border-radius: 8px; /* Colțuri ușor rotunjite */
-    margin-right: 10px; /* Spațiere între butoane */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Tranziție pentru fundal și text */
-    display: flex; /* Layout flexibil pentru aliniere */
-    align-items: center; /* Aliniere verticală */
-    justify-content: center; /* Aliniere orizontală */
+    color: white; 
+    width: 220px; 
+    height: 80px; 
+    padding: 8px 16px; 
+    border: 4px solid #4caf50; 
+    border-radius: 8px;
+    margin-right: 10px; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     position: relative;
-    font-size: 36px; /* Mărimea fontului pentru icon */
+    font-size: 36px; 
   line-height: 1; 
   }
   
   .custom-icon-button-add{
-    background-color: #4caf50; /* Fundal alb pentru buton */
-    margin-top: 1%;
-    color: white; /* Culoarea iconiței și textului (verde) */
-    width: 200px; /* Lățimea butonului */
-    height: 80px; /* Înălțimea butonului */
-    padding: 8px 16px; /* Spațierea internă */
-    border: 4px solid #4caf50; /* Bordura verde */
-    border-radius: 8px; /* Colțuri ușor rotunjite */
-    margin-right: 10px; /* Spațiere între butoane */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Tranziție pentru fundal și text */
-    display: flex; /* Layout flexibil pentru aliniere */
-    align-items: center; /* Aliniere verticală */
-    justify-content: center; /* Aliniere orizontală */
+    background-color: #4caf50; 
+    margin-top: 0%;
+    color: white; 
+    width: 228px; 
+    height: 100px; 
+    padding: 8px 16px; 
+    border: 4px solid #4caf50; 
+    border-radius: 8px; 
+    margin-right: 10px; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     position: relative;
-    font-size: 36px; /* Mărimea fontului pentru icon */
+    font-size: 36px; 
   line-height: 1; 
   }
 
   .custom-icon-button-add:hover, .custom-icon-button:focus {
-    background-color: white; /* Verde închis la hover și focus */
-  color: #4caf50; /* Text alb la hover și focus */
-    cursor: pointer; /* Cursor pointer pentru interacțiune */
+    background-color: white;
+  color: #4caf50; 
+    cursor: pointer; 
   } 
   
   .custom-icon-button-add:active {
-    background-color: #4caf50; /* Fundal verde la click */
+    background-color: #4caf50; 
     color: white; 
   }
 
@@ -90,6 +90,7 @@
     margin-right: 10px;
     transition: background-color 1s ease, color 1.5s ease;
     display: flex;
+    text-align: center;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -115,7 +116,7 @@
   }
   
   .btn-custom mat-icon {
-    margin-right: 8px;
+    margin-right: 4px;
   }
   .table-container {
     margin-top: 1%;
@@ -124,6 +125,7 @@
   }
 
   .custom-table {
+
     width: 100%;
     white-space: nowrap;
     border-collapse: collapse;
@@ -132,8 +134,9 @@
   table.custom-table td {
     border: 2px solid #4caf50; 
     padding: 8px;
-    text-align: left;
+    text-align: center;
   }
+  
   
   table.custom-table th {
     background-color: #218838; 
@@ -173,11 +176,9 @@
   color: #dc3545; 
 }
 
-
-.btn-submit-custom {
-  background-color: #007bff;
-  border-color: #007bff; 
-  color: white; 
+h1 {
+  color: #070606; /* Dark gray */
+  text-shadow: 1px 1px 2px rgba(252, 0, 0, 0.2);
 }
 
 
@@ -194,4 +195,84 @@
 .btn-close:hover,
 .btn-close:focus {
   background-color: red; 
+}
+
+
+.btn-submit-custom{
+
+font-family: Roboto, sans-serif;
+font-weight: 500;
+
+font-size: 14px;
+margin-top: 5%;
+color: #fff;
+background: linear-gradient(215deg, #1bed7d 20%, #52649c 60%);
+padding: 10px 30px;
+border: solid #12ff2e 2px;
+box-shadow: rgb(40, 214, 72) 5px 5px 25px 5px;
+border-radius: 50px;
+transition : 1000ms;
+transform: translateY(0);
+display:flex;
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+text-transform: uppercase;
+}
+
+.btn-submit-custom:hover{
+
+transition : 1000ms;
+padding: 10px 50px;
+transform : translateY(-14px);
+background: linear-gradient(215deg, #1bed7d 20%, #52649c 60%);
+color: #ffffff;
+border: solid 2px #ffffff;
+}
+
+
+
+.modal-custom .modal-header {
+  background-color: #4caf50; 
+  color: white; 
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #007bff; 
+  color: white; 
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator:active {
+  background-color: #0056b3; 
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.container-bottom-to-up {
+  overflow: hidden;
+  margin: 0px;
+}
+.top-to-bottom {
+  margin-top: 1%;
+  text-shadow:rgb(0, 0, 0) 3px 7px 9px;
+  animation: 2000ms top-to-bottom forwards;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  font-family:
+  "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  color: rgba(0,0,0,0.8);
+  text-align: left;
+}
+@keyframes top-to-bottom {
+from {
+  transform: translateY(-48px);
+}
+to {
+  transform: translateY(0);
+}
 }

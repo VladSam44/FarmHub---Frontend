@@ -86,11 +86,11 @@ export class HartaComponent implements OnInit {
           this.map.setZoom(14); 
         },
         (error) => {
-          console.error('Error getting user location:', error);
+          console.error('Erroare locatie user:', error);
         }
       );
     } else {
-      console.error('Geolocation is not supported by this browser.');
+      console.error('Geolocation nesuportata de browser.');
     }
   }
 
@@ -114,33 +114,83 @@ export class HartaComponent implements OnInit {
   showDrawing(drawing: any) {
     if (!drawing) {
       console.error('No drawing provided.');
-      return; 
+      return;
     }
-
+  
     let coordinates;
     try {
       coordinates = JSON.parse(drawing.coordinates);
     } catch (error) {
       console.error('Error parsing coordinates:', error);
-      return; 
+      return;
     }
     
     if (!Array.isArray(coordinates)) {
       console.error('Parsed coordinates is not an array.');
       return;
     }
-
+  
     const geojson: any = {
       type: 'Feature',
       geometry: {
         type: 'Polygon',
         coordinates: coordinates
+      },
+      properties: {
+        id: drawing.id 
       }
     };
+  
     const layerId = 'drawing-' + drawing.id;
     const existingLayer = this.map.getLayer(layerId);
+  
+    
+    let fillColor = '#0080ff'; 
+    switch (drawing.tipCultura) {
+      case 'Orz':
+        fillColor = '#f0e68c'; 
+        break;
+      case 'Grau':
+        fillColor = '#daa520'; 
+        break;
+      case 'Porumb':
+        fillColor = '#ff8c00'; 
+        break;
+      case 'Rapiță':
+        fillColor = '#000000'; 
+        break;
+      case 'Floarea soarelui':
+        fillColor = '#ffd700'; 
+        break;
+      case 'Cartofi':
+        fillColor = '#321414'; 
+        break;
+      case 'Ovăz':
+        fillColor = '#808080'; 
+        break;
+      case 'Mazăre':
+        fillColor = '#ffffff'; 
+        break;
+      case 'Lucernă':
+        fillColor = '#006400'; 
+        break;
+      default:
+        fillColor = '#0080ff'; 
+        break;
+    }
+  
+    
+    let lineColor = '#000'; 
+    const proprietarArenda = this.formData.proprietarArenda;
+    if (proprietarArenda === 'Arendă agricolă') {
+      lineColor = '#ffffff'; 
+    } else if (proprietarArenda === 'Proprietate privată') {
+      lineColor = '#808080'; 
+    }
     
     if (existingLayer) {
+      this.map.setPaintProperty(layerId + '-outline', 'line-color', lineColor);
+      this.map.setPaintProperty(layerId, 'fill-color', fillColor);
       this.map.getSource(layerId).setData(geojson);
     } else {
       this.map.addLayer({
@@ -152,10 +202,11 @@ export class HartaComponent implements OnInit {
         },
         'layout': {},
         'paint': {
-          'fill-color': '#0080ff',
+          'fill-color': fillColor,
           'fill-opacity': 0.5,
         }
       });
+  
       this.map.addLayer({
         'id': layerId + '-outline',
         'type': 'line',
@@ -165,24 +216,45 @@ export class HartaComponent implements OnInit {
         },
         'layout': {},
         'paint': {
-          'line-color': '#000',
+          'line-color': lineColor,
           'line-width': 2,
           'line-opacity': 0.8
         }
       });
-    }
+  
 
+      this.map.addLayer({
+        'id': layerId + '-id',
+        'type': 'symbol',
+        'source': {
+          'type': 'geojson',
+          'data': geojson
+        },
+        'layout': {
+          'text-field': '{id}', 
+          'text-size': 12,
+          'text-font': ['Open Sans Regular'],
+          'text-anchor': 'center'
+        },
+        'paint': {
+          'text-color': lineColor,
+        }
+      });
+    }
+  
     const bounds = turf.bbox(geojson);   
     if (!bounds || bounds.length !== 4) {
       console.error('Invalid bounds:', bounds);
       return;
     }
-
+  
     this.map.fitBounds(bounds, {
       padding: 20, 
       maxZoom: 15, 
     });
   }
+  
+  
 
   updateArea = (e: any) => {
     const data = this.draw.getAll();

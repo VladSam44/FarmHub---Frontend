@@ -46,6 +46,7 @@
     "maplibre-gl": "^4.1.1",
     "ng-angular-popup": "^0.5.2",
     "ngx-bootstrap": "^12.0.0",
+    "ngx-spinner": "^17.0.0",
     "ol": "^7.5.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

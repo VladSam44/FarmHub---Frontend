@@ -1,27 +1,26 @@
 <div class="outer">
   <div style="max-height: 820px; overflow: auto;" class="table-container">
-    <h1>Staff Management</h1>
-    <div class="add-button-container">
-      <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addAngajatModal = true">
-        Adaugă Angajat
-      </button>
+    <div id="containerAnimation" class="container-bottom-to-up">
+      <p class="bottom-to-up">Administrarea angajaților</p>
     </div>
+
     <table class="table custom-table">
       <thead>
         <tr>
           <th>Nume</th>
-          <th>Pozitie</th>
+          <th>Post</th>
           <th>Salariu</th>
-          <th>Hire Date</th>
+          <th>Data angajării</th>
           <th>Expirare Contract</th>
           <th>Acțiuni</th>
         </tr>
       </thead>
+      
       <tbody>
         <tr *ngFor="let angajat of angajati">
           <td>{{ angajat.nume }}</td>
           <td>{{ angajat.pozitie }}</td>
-          <td>{{ angajat.salariu }}</td>
+          <td>{{ angajat.salariu | currency:'RON '  }}</td>
           <td>{{ angajat.hireDate | date }}</td>
           <td>{{ angajat.expirareContract | date }}</td>
           <td>
@@ -36,18 +35,32 @@
       </tbody>
     </table>
   </div>
+  
 </div>
 
-<div *ngIf="addAngajatModal || editAngajatModal" class="modal fade show modal-custom" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="angajatModalLabel" aria-hidden="true">
+<div class="add-button-container">
+  <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addAngajatModal = true">
+    Adaugă Angajat
+  </button>
+  <div class="total-angajati-box">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Număr angajați</h5>
+        <p class="card-text">{{ totalAngajati }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="addAngajatModal" class="modal fade show modal-custom" style="display: block;" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal-header-custom">
-        <h5 class="modal-title">{{ addAngajatModal ? 'Adăugare Angajat Nou' : 'Editare Angajat' }}</h5>
-        <button class="btn btn-sm btn-close" (click)="addAngajatModal = false; editAngajatModal = false;">
-        </button>
+        <h3 class="modal-title">Adăugare Angajat Nou</h3>
+        <button class="btn btn-sm btn-close" (click)="addAngajatModal = false;"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="angajatForm" (ngSubmit)="addAngajatModal ? addAngajat() : updateAngajat()">
+        <form [formGroup]="angajatForm" (ngSubmit)="addAngajat()">
           <div class="form-group">
             <label for="nume">Nume</label>
             <input type="text" class="form-control form-control-custom" id="nume" formControlName="nume">
@@ -61,16 +74,49 @@
             <input type="number" class="form-control form-control-custom" id="salariu" formControlName="salariu">
           </div>
           <div class="form-group">
-            <label for="hiredate">Hire Date</label>
+            <label for="hiredate">Data angajării</label>
             <input type="date" class="form-control form-control-custom" id="hiredate" formControlName="hiredate">
           </div>
           <div class="form-group">
             <label for="expirareContract">Expirare Contract</label>
             <input type="date" class="form-control form-control-custom" id="expirareContract" formControlName="expirareContract">
           </div>
-          <button type="submit" class="btn btn-primary btn-submit-custom">{{ addAngajatModal ? 'Adăugă Angajat' : 'Salvează Modificările' }}</button>
+          <button type="submit" class="btn btn-primary btn-submit-custom">Adaugă Angajat</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="editAngajatModal" class="modal fade show modal-custom" style="display: block;" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom">
+        <h3 class="modal-title">Editare Angajat</h3>
+        <button class="btn btn-sm btn-close" (click)="editAngajatModal = false;"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="angajatForm" (ngSubmit)="updateAngajat()">
+          <div class="form-group">
+            <label for="nume">Nume</label>
+            <input type="text" class="form-control form-control-custom" id="nume" formControlName="nume">
+          </div>
+          <div class="form-group">
+            <label for="pozitie">Pozitie</label>
+            <input type="text" class="form-control form-control-custom" id="pozitie" formControlName="pozitie">
+          </div>
+          <div class="form-group">
+            <label for="salariu">Salariu</label>
+            <input type="number" class="form-control form-control-custom" id="salariu" formControlName="salariu">
+          </div>
+          <div class="form-group">
+            <label for="expirareContract">Expirare Contract</label>
+            <input type="date" class="form-control form-control-custom" id="expirareContract" formControlName="expirareContract">
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit-custom">Salvează Modificările</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

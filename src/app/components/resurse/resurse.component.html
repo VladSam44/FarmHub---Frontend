@@ -1,13 +1,85 @@
-<p>resurse works!</p>
-<div class="col-md-4 ml-auto mt-3">
-    <div class="row mb-3">
-     <div class="adaugare col-12 text-right">
-         <p class="text-dark ms-3" (click)="toggleAddProduct()">
-             <b>Adaugă Produs </b>
-             <i class="fa" [ngClass]="{'fa-chevron-up': showAddProduct, 'fa-chevron-down': !showAddProduct}"></i>
-         </p>
-     </div>
- </div> 
-<div *ngIf="showAddProduct">
-    asdas
-</div> 
+<div class="outer">
+    <div style="max-height: 820px; overflow: auto;" class="table-container">
+      <div id="containerAnimation" class="container-bottom-to-up">
+        <p class="bottom-to-up">Administrare depozit</p>
+      </div>
+  
+      <div class="add-button-container">
+        <button mat-icon-button class="custom-icon-button-add mb-2" (click)="addResursaModal = true">
+          Adaugă
+        </button>
+      </div>
+      <table class="table custom-table">
+        <thead>
+          <tr>
+            <th>Tip</th>
+            <th>Produs</th>
+
+            <th>Cantitate</th>
+            <th>Data Achiziție</th>
+            <th>Preț Achiziție</th>
+            <th>Acțiuni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resursa of resurse">
+            <td>{{ resursa.tip }}</td>
+            <td>{{ resursa.nume }}</td>
+            <td>{{ resursa.cantitate }} {{ resursa.unitateDeMasura }}</td>
+            <td>{{ resursa.dataAchizitie | date }}</td>
+            <td>{{ resursa.pretAchizitie  | currency:'RON '}}</td>
+            <td>
+              <button id="editBtn-{{resursa.id}}" class="btn btn-sm btn-warning btn-custom btn-edit" (click)="editResursa(resursa)">
+                <mat-icon>edit_square</mat-icon>
+              </button>
+              <button id="deleteBtn-{{resursa.id}}" class="btn btn-sm btn-danger btn-custom btn-delete" (click)="deleteResursa(resursa.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div *ngIf="addResursaModal || editResursaModal" class="modal fade show modal-custom" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="resursaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-custom">
+          <h5 class="modal-title">{{ addResursaModal ? 'Adăugare Resursă Nouă' : 'Editare Resursă' }}</h5>
+          <button class="btn btn-sm btn-close" (click)="addResursaModal = false; editResursaModal = false;">
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="resurseForm" (ngSubmit)="addResursaModal ? addResursa() : updateResursa()">
+            <div class="form-group">
+              <label for="tip">Tip</label>
+              <input type="text" class="form-control form-control-custom" id="tip" formControlName="tip">
+            </div>
+            <div class="form-group">
+              <label for="nume">Nume</label>
+              <input type="text" class="form-control form-control-custom" id="nume" formControlName="nume">
+            </div>
+            <div class="form-group">
+              <label for="cantitate">Cantitate</label>
+              <input type="number" class="form-control form-control-custom" id="cantitate" formControlName="cantitate">
+            </div>
+            <div class="form-group">
+              <label for="unitateDeMasura">Unitate de Măsură</label>
+              <input type="text" class="form-control form-control-custom" id="unitateDeMasura" formControlName="unitateDeMasura">
+            </div>
+            <div class="form-group">
+              <label for="dataAchizitie">Data Achiziție</label>
+              <input type="date" class="form-control form-control-custom" id="dataAchizitie" formControlName="dataAchizitie">
+            </div>
+            <div class="form-group">
+              <label for="pretAchizitie">Preț Achiziție</label>
+              <input type="number" class="form-control form-control-custom" id="pretAchizitie" formControlName="pretAchizitie">
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit-custom">{{ addResursaModal ? 'Adaugă' : 'Salvează Modificările' }}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

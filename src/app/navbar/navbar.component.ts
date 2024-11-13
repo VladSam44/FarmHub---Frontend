@@ -13,4 +13,3 @@ export class NavbarComponent {
     this.auth.signOut();
   }
 }
-

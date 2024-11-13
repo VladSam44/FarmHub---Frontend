@@ -25,8 +25,8 @@ export class EchipamentComponent implements OnInit {
   isCollapsed: boolean = true;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  listaUtilaje: boolean = true;
-  listaVehicule: boolean = false;
+  listaUtilaje: boolean = false;
+  listaVehicule: boolean = true;
   listaTransporturi: boolean = false;
 
   addUtilajModal: boolean = false;
@@ -40,7 +40,33 @@ export class EchipamentComponent implements OnInit {
   showUtilajeCount = false;
   showVehiculeCount = false; 
   showTransporturiCount = false; 
-  optiuniCategorie: string[] = ['Utilaj agricol', 'Utilaj forestier', 'Utilaj de construcții', 'Altele'];
+  optiuniCategorieUtilaje: string[] = ['Plug',
+  'Semănătoare',
+  'Cositoare',
+  'Cultivator',
+  'Teradisc',
+  'Presă baloți',
+  'Fertilizator',
+  'Instalație de irigat',
+  'Mașină de recoltat',
+  'Autofreza',
+  'Combinator',
+  'Gruber',
+  'Scarificator',
+  'Freză de sol',]
+  optiuniCategorieVehicul: string[] = ['Tractor', 'Combină', 'Camion', 'Încărcător frontal','Telehandler', 'Pulverizator', 'Cositoare', 'Încarcător frontal'];
+
+  optiuniCategorieTransportAgricol: string[] = [
+    'Remorcă agricolă',
+    'Camion cisternă pentru motorină',
+    'Autocisternă pentru motorină',
+    'Autocisternă pentru alte lichide agricole',
+    'Furgon specializat pentru transport cereale',
+    'Remorcă de camion',
+    'Cisternă',
+    'Remorcă tehnologică',
+    'Remorcă transport baloți',
+  ];
 
   constructor(private echipamentService: EchipamentService, private fb: FormBuilder, private toast: NgToastService) {
     this.bsConfig = Object.assign({}, { dateInputFormat: 'YYYY-MM-DD' });

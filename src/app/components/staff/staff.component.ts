@@ -13,10 +13,11 @@ export class StaffComponent implements OnInit {
   selectedAngajat: any = null;
   bsConfig: Partial<BsDatepickerConfig>;
 
+
   addAngajatModal: boolean = false;
   editAngajatModal: boolean = false;
 
-  constructor(private staffService: StaffService, private fb: FormBuilder) {
+  constructor(private staffService: StaffService, private fb: FormBuilder,) {
     this.bsConfig = Object.assign({}, { dateInputFormat: 'YYYY-MM-DD' });
     this.angajatForm = this.fb.group({
       nume: ['', Validators.required],
@@ -26,9 +27,13 @@ export class StaffComponent implements OnInit {
       expirareContract: ['', Validators.required],
     });
   }
+ 
+
   ngOnInit(): void {
     this.getAllAngajati();
   }
+
+
   getAllAngajati(): void {
     this.staffService.getAllAngajati().subscribe(
       data => {
@@ -41,6 +46,10 @@ export class StaffComponent implements OnInit {
     );
   }
 
+
+  get totalAngajati(): number {
+    return this.angajati.length;
+  }
   addAngajat(): void {
     if (this.angajatForm.valid) {
       this.staffService.addAngajat(this.angajatForm.value).subscribe(
@@ -59,19 +68,23 @@ export class StaffComponent implements OnInit {
 
   editAngajat(angajat: any): void {
     this.selectedAngajat = angajat;
-    this.angajatForm.patchValue(angajat);
-    this.editAngajatModal = true;
+    this.angajatForm.patchValue({
+      ...angajat,
+    });    this.editAngajatModal = true;
   }
 
   updateAngajat(): void {
+    console.log('Form value before update:', this.angajatForm.value);
     if (this.angajatForm.valid && this.selectedAngajat) {
-      const formData = { ...this.angajatForm.value, id: this.selectedAngajat.id };
+      const formData = { ...this.angajatForm.value, id: this.selectedAngajat.id, 
+      };
       this.staffService.updateAngajat(formData).subscribe(
         data => {
           console.log('Angajat updated successfully');
           this.getAllAngajati();
           this.angajatForm.reset();
           this.selectedAngajat = null;
+          this.editAngajatModal = false;
         },
         error => {
           console.error('Error updating angajat', error);

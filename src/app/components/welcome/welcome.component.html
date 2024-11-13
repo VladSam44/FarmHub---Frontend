@@ -1,61 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .welcome-container {
-      text-align: center;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    p {
-      color: #666;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .btn-login {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .btn-login:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  <div class="welcome-container">
-    <h1>Welcome to Our Website!</h1>
-    <p>We are excited to have you here.</p>
-    <a href="/login" class="btn-login">Login</a>
+<div class="landing-page">
+  <header>
+    <div class="logo">FarmHub</div>
+    <nav>
+      <a href="login" class="btn btn-login">Autentificare</a>
+      <a href="signup" class="btn btn-login">Înregistrare</a>
+    </nav>
+  </header>
+  
+  <main>
+    <svg class="animated-title">
+      <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+        FarmHub
+      </text>
+    </svg>
+    <div id="containerAnimation" class="container-left-to-right">
+      <p class="left-to-right">Platforma ta digitală pentru agricultură</p>
+    </div>
+    <div id="containerAnimation" class="container-right-to-left">
+      <p class="right-to-left">Bine ați venit!</p>
+  <p class="description">FarmHub este platforma digitală care simplifică gestionarea fermelor și crește eficiența în agricultură.
+     Conectându-vă cu tehnologia de vârf, FarmHub vă oferă acces rapid și ușor la
+      instrumentele necesare pentru a gestiona fiecare aspect al fermei dumneavoastră.</p>
   </div>
-</body>
-</html>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 FarmHub. Toate drepturile rezervate.</p>
+  </footer>
+</div>

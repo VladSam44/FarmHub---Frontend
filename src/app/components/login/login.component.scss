@@ -100,16 +100,16 @@ img{
     font-size: 16px;
     text-align: center;
     text-decoration: none;
-    background-color: #fff; /* Fundal alb */
-    color: #28a745; /* Text verde */
-    border: 1px solid #28a745; /* Contur verde */
+    background-color: #fff; 
+    color: #28a745; 
+    border: 1px solid #28a745; 
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 #logareBtn:hover {
-    background-color: #28a745; /* Fundal verde la hover */
-    color: #fff; /* Text alb la hover */
+    background-color: #28a745; 
+    color: #fff; 
 }
 

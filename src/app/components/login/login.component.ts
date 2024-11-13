@@ -58,7 +58,7 @@ export class LoginComponent {
           this.userStore.setRoleForStore(tokenPayLoad.role);
           this.toast.success({detail:"Reusit", summary:"Logare cu succes!", duration: 7000});
           this.loginForm.reset();
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['meteo'])
         },
         error:(err)=>{
           this.toast.error({detail:"EROARE", summary:"Nume de utilizator sau parola gresite!", duration: 7000});
