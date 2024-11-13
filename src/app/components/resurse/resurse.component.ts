@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResurseService } from '../../services/resurse.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { NgToastService } from 'ng-angular-popup';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ResurseService } from '../../services/resurse.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-resurse',
